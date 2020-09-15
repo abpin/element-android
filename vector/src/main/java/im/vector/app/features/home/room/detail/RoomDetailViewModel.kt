@@ -42,6 +42,7 @@ import im.vector.app.features.home.room.detail.sticker.StickerPickerActionHandle
 import im.vector.app.features.home.room.detail.timeline.helper.RoomSummaryHolder
 import im.vector.app.features.home.room.detail.timeline.helper.TimelineDisplayableEvents
 import im.vector.app.features.home.room.typing.TypingHelper
+import im.vector.app.features.homeserver.ElementWellKnownMapper
 import im.vector.app.features.powerlevel.PowerLevelsObservableFactory
 import im.vector.app.features.settings.VectorLocale
 import im.vector.app.features.settings.VectorPreferences
@@ -62,8 +63,8 @@ import org.matrix.android.sdk.api.query.QueryStringValue
 import org.matrix.android.sdk.api.session.Session
 import org.matrix.android.sdk.api.session.crypto.MXCryptoError
 import org.matrix.android.sdk.api.session.events.model.EventType
-import org.matrix.android.sdk.api.session.events.model.isAttachmentMessage
 import org.matrix.android.sdk.api.session.events.model.LocalEcho
+import org.matrix.android.sdk.api.session.events.model.isAttachmentMessage
 import org.matrix.android.sdk.api.session.events.model.isTextMessage
 import org.matrix.android.sdk.api.session.events.model.toContent
 import org.matrix.android.sdk.api.session.events.model.toModel
@@ -349,7 +350,13 @@ class RoomDetailViewModel @AssistedInject constructor(
             val roomId: String = room.roomId
             val confId = roomId.substring(1, roomId.indexOf(":") - 1) + widgetSessionId.toLowerCase(VectorLocale.applicationLocale)
 
-            val jitsiDomain = session.getHomeServerCapabilities().preferredJitsiDomain ?: stringProvider.getString(R.string.preferred_jitsi_domain)
+            val preferredJitsiDomain = tryThis {
+                awaitCallback<String> { session.rawService().getWellknown(it) }
+                        .let { ElementWellKnownMapper.from(it) }
+                        ?.jitsiServer
+                        ?.preferredDomain
+            }
+            val jitsiDomain = preferredJitsiDomain ?: stringProvider.getString(R.string.preferred_jitsi_domain)
 
             // We use the default element wrapper for this widget
             // https://github.com/vector-im/element-web/blob/develop/docs/jitsi-dev.md
