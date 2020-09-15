@@ -47,6 +47,7 @@ import org.matrix.android.sdk.api.session.integrationmanager.IntegrationManagerS
 import org.matrix.android.sdk.api.session.permalinks.PermalinkService
 import org.matrix.android.sdk.api.session.profile.ProfileService
 import org.matrix.android.sdk.api.session.pushers.PushersService
+import org.matrix.android.sdk.api.session.raw.RawService
 import org.matrix.android.sdk.api.session.room.RoomDirectoryService
 import org.matrix.android.sdk.api.session.room.RoomService
 import org.matrix.android.sdk.api.session.securestorage.SecureStorageService
@@ -98,6 +99,7 @@ internal class DefaultSession @Inject constructor(
         private val cryptoService: Lazy<DefaultCryptoService>,
         private val defaultFileService: Lazy<FileService>,
         private val permalinkService: Lazy<PermalinkService>,
+        private val rawService: Lazy<RawService>,
         private val secureStorageService: Lazy<SecureStorageService>,
         private val profileService: Lazy<ProfileService>,
         private val widgetService: Lazy<WidgetService>,
@@ -257,6 +259,8 @@ internal class DefaultSession @Inject constructor(
     override fun fileService(): FileService = defaultFileService.get()
 
     override fun permalinkService(): PermalinkService = permalinkService.get()
+
+    override fun rawService(): RawService = rawService.get()
 
     override fun widgetService(): WidgetService = widgetService.get()
 

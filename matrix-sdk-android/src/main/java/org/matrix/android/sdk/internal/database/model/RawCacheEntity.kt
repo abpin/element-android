@@ -18,13 +18,12 @@
 package org.matrix.android.sdk.internal.database.model
 
 import io.realm.RealmObject
-import org.matrix.android.sdk.api.session.homeserver.HomeServerCapabilities
+import io.realm.annotations.PrimaryKey
 
-internal open class HomeServerCapabilitiesEntity(
-        var canChangePassword: Boolean = true,
-        var maxUploadFileSize: Long = HomeServerCapabilities.MAX_UPLOAD_FILE_SIZE_UNKNOWN,
-        var lastVersionIdentityServerSupported: Boolean = false,
-        var defaultIdentityServerUrl: String? = null,
+internal open class RawCacheEntity(
+        @PrimaryKey
+        var url: String = "",
+        var data: String = "",
         var lastUpdatedTimestamp: Long = 0L
 ) : RealmObject() {
 

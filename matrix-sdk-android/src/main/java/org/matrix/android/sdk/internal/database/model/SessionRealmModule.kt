@@ -47,6 +47,7 @@ import io.realm.annotations.RealmModule
             PollResponseAggregatedSummaryEntity::class,
             ReferencesAggregatedSummaryEntity::class,
             PushRulesEntity::class,
+            RawCacheEntity::class,
             PushRuleEntity::class,
             PushConditionEntity::class,
             PusherEntity::class,

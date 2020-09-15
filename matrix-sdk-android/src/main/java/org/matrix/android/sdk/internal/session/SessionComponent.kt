@@ -44,6 +44,7 @@ import org.matrix.android.sdk.internal.session.openid.OpenIdModule
 import org.matrix.android.sdk.internal.session.profile.ProfileModule
 import org.matrix.android.sdk.internal.session.pushers.AddHttpPusherWorker
 import org.matrix.android.sdk.internal.session.pushers.PushersModule
+import org.matrix.android.sdk.internal.session.raw.RawModule
 import org.matrix.android.sdk.internal.session.room.RoomModule
 import org.matrix.android.sdk.internal.session.room.relation.SendRelationWorker
 import org.matrix.android.sdk.internal.session.room.send.EncryptEventWorker
@@ -84,6 +85,7 @@ import org.matrix.android.sdk.internal.util.MatrixCoroutineDispatchers
             TermsModule::class,
             AccountDataModule::class,
             ProfileModule::class,
+            RawModule::class,
             SessionAssistedInjectModule::class,
             AccountModule::class,
             CallModule::class

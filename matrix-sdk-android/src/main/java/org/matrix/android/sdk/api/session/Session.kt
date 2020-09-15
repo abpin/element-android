@@ -39,6 +39,7 @@ import org.matrix.android.sdk.api.session.integrationmanager.IntegrationManagerS
 import org.matrix.android.sdk.api.session.permalinks.PermalinkService
 import org.matrix.android.sdk.api.session.profile.ProfileService
 import org.matrix.android.sdk.api.session.pushers.PushersService
+import org.matrix.android.sdk.api.session.raw.RawService
 import org.matrix.android.sdk.api.session.room.RoomDirectoryService
 import org.matrix.android.sdk.api.session.room.RoomService
 import org.matrix.android.sdk.api.session.securestorage.SecureStorageService
@@ -200,6 +201,11 @@ interface Session :
      * Returns the permalink service associated with the session
      */
     fun permalinkService(): PermalinkService
+
+    /**
+     * Returns the raw service associated with the session
+     */
+    fun rawService(): RawService
 
     /**
      * Add a listener to the session.
