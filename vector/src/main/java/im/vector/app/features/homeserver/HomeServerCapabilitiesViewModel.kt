@@ -33,7 +33,6 @@ import org.matrix.android.sdk.api.extensions.tryThis
 import org.matrix.android.sdk.api.session.Session
 import org.matrix.android.sdk.api.session.homeserver.HomeServerCapabilities
 import org.matrix.android.sdk.internal.util.awaitCallback
-import javax.inject.Inject
 
 class HomeServerCapabilitiesViewModel @AssistedInject constructor(
         @Assisted initialState: HomeServerCapabilitiesViewState,
